@@ -1,0 +1,363 @@
+﻿<Window x:Class="NBALegende.AddLegendWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NBALegende"
+        mc:Ignorable="d"
+        Title="Dodavanje NBA legende"
+        Height="828"
+        Width="1062"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#EEE7D6">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="#1B1B1B"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="#1B1B1B"/>
+            <Setter Property="Background" Value="#FFFDF8"/>
+            <Setter Property="BorderBrush" Value="#A68349"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="#1B1B1B"/>
+            <Setter Property="Background" Value="#FFFDF8"/>
+            <Setter Property="BorderBrush" Value="#A68349"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+        </Style>
+
+        <Style x:Key="EditorButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="#1B1B1B"/>
+            <Setter Property="Background" Value="#E7D7A6"/>
+            <Setter Property="BorderBrush" Value="#A68349"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Border Background="#F8F2E3"
+                CornerRadius="25"
+                BorderBrush="#A68349"
+                BorderThickness="3"
+                Padding="20" Margin="10,10,0,0">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="txtWindowTitle"
+                           Text="DODAVANJE NBA LEGENDE"
+                           FontSize="34"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--sve levo-->
+                    <StackPanel Grid.Column="0">
+
+                        <TextBlock Text="Ime i prezime"
+                                   FontSize="16"
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="tbFullName"
+                                 Height="38"
+                                 ToolTip="Unesite ime i prezime legende"
+                                 FontSize="16"
+                                 Margin="0,0,0,15"/>
+                        <TextBlock x:Name="txtFullNameError"
+                                FontSize="13"
+                                Foreground="Red"
+                                Margin="2,3,0,10"/>
+
+                        <TextBlock Text="Broj dresa"
+                                   FontSize="16"
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="tbJerseyNumber"
+                                 Height="38"
+                                 ToolTip="Unesite broj dresa legende"
+                                 FontSize="16"
+                                 Margin="0,0,0,15"/>
+                        <TextBlock x:Name="txtJerseyNumberError"
+                                    FontSize="13"
+                                    Foreground="Red"
+                                    Margin="2,3,0,10"/>
+
+                        <TextBlock Text="Biografija / opis"
+                                   FontSize="16"
+                                   Margin="0,0,0,5"/>
+
+                        <!--tulbar-->
+                        <Border BorderBrush="#A68349"
+                                BorderThickness="1.5"
+                                CornerRadius="8,8,0,0"
+                                Background="#EBDDAB"
+                                Padding="8">
+
+                            <WrapPanel VerticalAlignment="Center">
+
+                                <Button x:Name="btnBold"
+                                        Width="40"
+                                        Height="35"
+                                        ToolTip="Nahrani ga"
+                                        Margin="0,0,8,0"
+                                        Style="{StaticResource EditorButtonStyle}"
+                                        Click="btnBold_Click">
+                                    <TextBlock Text="B"
+                                               FontWeight="Bold"
+                                               FontSize="18"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Button>
+
+                                <Button x:Name="btnItalic"
+                                        Width="40"
+                                        Height="35"
+                                        ToolTip="Iskosi ga"
+                                        Margin="0,0,8,0"
+                                        Style="{StaticResource EditorButtonStyle}"
+                                        Click="btnItalic_Click">
+                                    <TextBlock Text="I"
+                                               FontStyle="Italic"
+                                               FontSize="18"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Button>
+
+                                <Button x:Name="btnUnderline"
+                                        Width="40"
+                                        Height="35"
+                                        ToolTip="Podvuci šefe"
+                                        Margin="0,0,15,0"
+                                        Style="{StaticResource EditorButtonStyle}"
+                                        Click="btnUnderline_Click">
+                                    <TextBlock Text="U"
+                                               TextDecorations="Underline"
+                                               FontSize="18"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Button>
+
+                                <ComboBox x:Name="cbFonts"
+                                          Width="180"
+                                          Height="35"
+                                          ToolTip="Izaberite font teksta"
+                                          Cursor="Hand"
+                                          Margin="0,0,10,0"
+                                          SelectionChanged="cbFonts_SelectionChanged"/>
+
+                                <ComboBox x:Name="cbFontSize"
+                                          Width="90"
+                                          Height="35"
+                                          ToolTip="Izbor velicine slova"
+                                          Cursor="Hand"
+                                          Margin="0,0,10,0"
+                                          SelectionChanged="cbFontSize_SelectionChanged">
+                                    <ComboBoxItem Content="10"/>
+                                    <ComboBoxItem Content="12"/>
+                                    <ComboBoxItem Content="14"/>
+                                    <ComboBoxItem Content="16"/>
+                                    <ComboBoxItem Content="18"/>
+                                    <ComboBoxItem Content="20"/>
+                                    <ComboBoxItem Content="24"/>
+                                    <ComboBoxItem Content="28"/>
+                                    <ComboBoxItem Content="32"/>
+                                </ComboBox>
+
+                                <ComboBox x:Name="cbTextColor"
+                                          Width="130"
+                                          ToolTip="Izaberite boju teksta"
+                                          Cursor="Hand"
+                                          Height="35"
+                                          SelectionChanged="cbTextColor_SelectionChanged">
+                                    <ComboBoxItem Content="Black"/>
+                                    <ComboBoxItem Content="Red"/>
+                                    <ComboBoxItem Content="Blue"/>
+                                    <ComboBoxItem Content="Green"/>
+                                    <ComboBoxItem Content="Orange"/>
+                                    <ComboBoxItem Content="Purple"/>
+                                </ComboBox>
+                            </WrapPanel>
+                        </Border>
+
+                        <!--bogati teqxbox-->
+                        <RichTextBox x:Name="rtbBiography"
+                                     Height="232"
+                                     FontSize="15"
+                                     ToolTip="Unesite biografiju legende"
+                                     FontFamily="Times New Roman"
+                                     Background="#FFFDF8"
+                                     Foreground="#1B1B1B"
+                                     VerticalScrollBarVisibility="Auto"
+                                     TextChanged="rtbBiography_TextChanged"
+                                     SelectionChanged="rtbBiography_SelectionChanged"
+                                     BorderBrush="#A68349"
+                                     BorderThickness="1.5"
+                                     Margin="0,0,0,8"/>
+                        <TextBlock x:Name="txtBiographyError"
+                                        FontSize="13"
+                                        Foreground="Red"
+                                        Margin="2,0,0,4"/>
+
+                        <TextBlock x:Name="tbWordCount"
+                                   Text="Broj reči: 0"
+                                   FontSize="14"
+                                   Foreground="#5B5242"
+                                   HorizontalAlignment="Right"/>
+                    </StackPanel>
+
+                    <!--sve desno -->
+                    <StackPanel Grid.Column="2">
+
+                        <TextBlock Text="Slika igrača"
+                                   FontSize="16"
+                                   Margin="0,0,0,8"/>
+
+                        <Border Height="200"
+                                BorderBrush="#A68349"
+                                BorderThickness="1.5"
+                                CornerRadius="10"
+                                Background="#F4E9C7"
+                                Margin="0,0,0,12">
+
+                            <Grid>
+                                <Image x:Name="imgPreview"
+                                       Stretch="Uniform"
+                                       Margin="10"/>
+
+                                <TextBlock x:Name="tbNoImage"
+                                           Text="Nema izabrane slike"
+                                           FontSize="16"
+                                           Foreground="#7A725F"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <Button x:Name="btnChooseImage"
+                                Content="IZABERI SLIKU"
+                                Height="42"
+                                Margin="0,0,0,12"
+                                Background="#2C66B8"
+                                Foreground="White"
+                                ToolTip="Izbor slike sa računara"
+                                FontSize="18"
+                                Cursor="Hand"
+                                FontFamily="Times New Roman"
+                                FontWeight="Bold"
+                                BorderThickness="0"
+                                Click="btnChooseImage_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <TextBlock Text="Izabrana putanja slike"
+                                   FontSize="16"
+                                   Margin="0,8,0,5"/>
+
+                        <TextBox x:Name="tbImagePath"
+                                 Height="70"
+                                 FontSize="14"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 IsReadOnly="True"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Margin="0,0,0,15"/>
+                        <TextBlock x:Name="txtImageError"
+                                 FontSize="13"
+                                 Foreground="Red"
+                                 Margin="2,3,0,10"/>
+
+                        <TextBlock Text="Napomena"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Margin="0,10,0,5"/>
+
+                        <TextBlock Text="Biografija koju unesete čuvaće se kao .rtf fajl kada kliknete na sačuvaj."
+                                   TextWrapping="Wrap"
+                                   FontSize="14"
+                                   Foreground="#5B5242"/>
+                    </StackPanel>
+                </Grid>
+
+                <!--klikci-->
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,20,0,0">
+
+                    <Button x:Name="btnSave"
+                            Content="SAČUVAJ"
+                            Width="150"
+                            Height="45"
+                            Cursor="Hand"
+                            Margin="0,0,10,0"
+                            Background="#2C66B8"
+                            Foreground="White"
+                            FontSize="18"
+                            ToolTip="Sačuvaj sve promene"
+                            FontFamily="Times New Roman"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Click="btnSave_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btnCancel"
+                            Content="ODUSTANI"
+                            Width="150"
+                            Height="45"
+                            Background="#D92C41"
+                            Foreground="White"
+                            Cursor="Hand"
+                            ToolTip="Odustani od promena"
+                            FontSize="18"
+                            FontFamily="Times New Roman"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Click="btnCancel_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
