@@ -450,7 +450,7 @@ namespace NBALegende
                 txtBiographyError.Text = "Biografija je obavezna.";
                 isValid = false;
             }
-
+            //ubaci metodu koja brise obrisane slike i rtf fajlove a ne cuva ih u binu
             return isValid;
         }
     }
